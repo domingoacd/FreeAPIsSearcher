@@ -2,6 +2,7 @@ const manageApisInfo = () => {
     const searcher = document.getElementById("searcher");
     hideLoadBar();
     showApisForm(searcher);
+    console.log(request.response);
 }
 const hideLoadBar = () => {
     const loadSpinner = document.getElementById("load-spinner");
