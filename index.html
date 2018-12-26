@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Public APIs handler</title>
 </head>
 <body>
@@ -13,11 +14,11 @@
             <div class="col"><h1 class="text-primary">Free APIs searcher</h1></div>
         </div>
     </header>
-    <div class="container-fluid my-5 d-none" id="load-spinner">
+    <div class="container-fluid position-absolute" id="load-spinner">
         <div class="row justify-content-center">
             <div class="col-12 text-center my-5">
                 <span class="">Loading</span>
-                <div class="load-spinner mx-auto my-2"></div>
+                <div class="border-warning  load-spinner mx-auto my-2"></div>
             </div>
         </div>
     </div>
@@ -25,82 +26,37 @@
         <div class="row">
             <div class="col"><h2>Search:</h2></div>
         </div>
-            <form id="api-form" action="" class="row justify-content-center">
-                <div class="form-group col-12 col-sm-6 col-md-4">
-                    <label for="desc">Name/Description</label>
-                    <input type="text" name="desc" id="desc" class="form-control">
-                </div>
-                <div class="form-group col-12 col-sm-6 col-md-4">
-                    <label for="auth">Authorization</label>
-                    <select name="auth" id="auth" class="form-control">
-                        <option value="">Any</option>
-                        <option value="apiKey">Does not need keys</option>
-                        <option value="">Needs Key</option>
-                        <option value="OAuth">OAuth</option>
-                    </select>
-                </div>
-                <div class="form-group col-12 col-sm-6 col-md-4">
-                    <label for="category">Category</label>
-                    <select name="category" id="category"class="form-control">
-                        <option value="">All</option>
-                        <option value="Animals" id="">Animals</option>
-                        <option value="Anime" id="">Anime</option>
-                        <option value="Anti-Malware" id="">Anti-Malware</option>
-                        <option value="Art & Design" id="">Art & Design</option>
-                        <option value="Books" id="">Books</option>
-                        <option value="Business Calendar" id="">Business Calendar</option>
-                        <option value="Cloud Storage & File Sharing" id="">Cloud Storage & File Sharing</option>
-                        <option value="Continuous Integration" id="">Continuous Integration</option>
-                        <option value="Cryptocurrency" id="">Cryptocurrency</option>
-                        <option value="Currency Exchange" id="">Currency Exchange</option>
-                        <option value="Data Validation" id="">Data Validation</option>
-                        <option value="Development" id="">Development</option>
-                        <option value="Dictionaries" id="">Dictionaries</option>
-                        <option value="Documents & Productivity" id="">Documents & Productivity</option>
-                        <option value="Environment" id="">Environment</option>
-                        <option value="Events" id="">Events</option>
-                        <option value="Finance" id="">Finance</option>
-                        <option value="Food & Drink" id="">Food & Drink</option>
-                        <option value="Fraud Prevention" id="">Fraud Prevention</option>
-                        <option value="Games & Comics" id="">Games & Comics</option>
-                        <option value="Geocoding" id="">Geocoding</option>
-                        <option value="Government" id="">Government</option>
-                        <option value="Health" id="">Health</option>
-                        <option value="Jobs" id="">Jobs</option>
-                        <option value="Machine Learning" id="">Machine Learning</option>
-                        <option value="Music" id="">Music</option>
-                        <option value="News" id="">News</option>
-                        <option value="Open Data" id="">Open Data</option>
-                        <option value="Open Source Projects" id="">Open Source Projects</option>
-                        <option value="Patent" id="">Patent</option>
-                        <option value="Personality" id="">Personality</option>
-                        <option value="Photography" id="">Photography</option>
-                        <option value="Science & Math" id="">Science & Math</option>
-                        <option value="Security" id="">Security</option>
-                        <option value="Shopping" id="">Shopping</option>
-                        <option value="Social" id="">Social</option>
-                        <option value="Sports & Fitness" id="">Sports & Fitness</option>
-                        <option value="Test Data" id="">Test Data</option>
-                        <option value="Text Analysis" id="">Text Analysis</option>
-                        <option value="Tracking" id="">Tracking</option>
-                        <option value="Transportation" id="">Transportation</option>
-                        <option value="URL Shorteners" id="">URL Shorteners</option>
-                        <option value="Vehicle" id="">Vehicle</option>
-                        <option value="Video" id="">Video</option>
-                        <option value="Weather" id="">Weather</option>
-                    </select>
-                </div>
-                <div class="form-group col-12 col-sm-6 col-md-4">
-                    <label for="auth">HTTPS</label>
-                    <select name="https" id="https"class="form-control">
-                        <option value="">Any</option>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
-                </div>
-                <div class="w-100 d-none-d-md-block"></div>
-                <button type="submit" id="submit-button" class="btn btn-secondary col-3 col-md-2 col-lg-1 mx-auto">Search</button>
-            </form>
+        <form id="api-form" action="" class="row justify-content-center">
+            <div class="form-group col-12 col-sm-6 col-md-4">
+                <label for="desc">Name/Description</label>
+                <input type="text" name="desc" id="desc" class="form-control">
+            </div>
+            <div class="form-group col-12 col-sm-6 col-md-4">
+                <label for="auth">Authorization</label>
+                <select name="auth" id="auth" class="form-control">
+                    <option value="">Any</option>
+                    <option value="apiKey">Does not need keys</option>
+                    <option value="">Needs Key</option>
+                    <option value="OAuth">OAuth</option>
+                </select>
+            </div>
+            <div class="form-group col-12 col-sm-6 col-md-4">
+                <label for="category">Category</label>
+                <select name="category" id="category"class="form-control">
+                    <option value="">All</option>
+                </select>
+            </div>
+            <div class="form-group col-12 col-sm-6 col-md-4">
+                <label for="auth">HTTPS</label>
+                <select name="https" id="https"class="form-control">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="w-100 d-none-d-md-block"></div>
+            <button type="submit" id="submit-button" class="btn btn-secondary col-3 col-md-2 col-lg-1 mx-auto">Search</button>
+        </form>
     </div>
     <div class="container-fluid text-center" id="results">
         <div class="row" id="result-list"></div>
