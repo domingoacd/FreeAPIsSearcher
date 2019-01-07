@@ -9,7 +9,7 @@ const showLoadSpinner = () => {
 }
 
 /* Creates the  container with the API info*/
-const createCard = (element) => {
+const createCard = (api) => {
     let card = document.createElement("div"),
         cardContent = document.createElement("div"),
         anchor = document.createElement("a"),
@@ -29,15 +29,15 @@ const createCard = (element) => {
     resulstList.appendChild(card);
     resulstList.classList.add("justify-content-center");
 
-    if (element == null) {
+    if (api == null) {
         /* If there are not API that match the search */
         card.textContent = "No Results";
-    } else if (element == "error") {
+    } else if (api == "error") {
         /* If  the request failed*/
         card.textContent = "Network error";
     } else {
         /* If the request was successful and there are matching APIs */
-        anchor.href = element.Link;
+        anchor.href = api.Link;
         anchor.target = "blank"
         anchor.classList.add("text-white");
         card.appendChild(anchor);
@@ -45,10 +45,10 @@ const createCard = (element) => {
         cardContent.classList.add("card-body");
         anchor.appendChild(cardContent);
 
-        cardTitle.textContent = element.API;
+        cardTitle.textContent = api.API;
         cardContent.appendChild(cardTitle);
 
-        cardDescription.textContent = element.Description;
+        cardDescription.textContent = api.Description;
         cardContent.appendChild(cardDescription);
     }
 }
@@ -61,12 +61,12 @@ const conectionError = () => {
 
 /* Inserts the list of categories inside of its respective "select" field */
 const insertCategories = (categories) => {
-    const categoryInput = document.getElementById("category");
+    const categoryField = document.getElementById("category");
     categories.forEach(category => {
-        let newOption = document.createElement("option");
-        newOption.value = category;
-        newOption.innerText = category;
-        categoryInput.appendChild(newOption);
+        let optionField = document.createElement("option");
+        optionField.value = category;
+        optionField.innerText = category;
+        categoryField.appendChild(optionField);
     });
 }
 
@@ -91,7 +91,7 @@ const loadCategories = () => {
 }
 
 /* Clears the results of previous searches */
-const clearResults = ()=>{
+const clearPreviousResults = ()=>{
     const results = document.getElementById("result-list");
     while(results.firstChild){
         results.removeChild(results.firstChild);
@@ -112,9 +112,9 @@ const showResults = (results)=>{
 }
 
 /* Makes the request and receives the answer */
-const manageApisInfo = (event) => {
+const searchAPIs = (event) => {
     event.preventDefault();
-    clearResults();
+    clearPreviousResults();
     showLoadSpinner();
     const request = new XMLHttpRequest();
     const description = document.getElementById("desc").value;
@@ -142,4 +142,4 @@ const manageApisInfo = (event) => {
 /* Events assignment section */
 window.onload = loadCategories;
 const formSubmit = document.getElementById("api-form");
-formSubmit.addEventListener("submit", manageApisInfo);
+formSubmit.addEventListener("submit", searchAPIs);
